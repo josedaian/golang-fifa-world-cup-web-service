@@ -3,6 +3,7 @@ package handlers
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"golang-fifa-world-cup-web-service/data"
 	"net/http"
 	"net/http/httptest"
@@ -70,6 +71,7 @@ func TestAddNewWinnerHandlerReturnsUnprocessableEntityForEmptyPayload(t *testing
 	handler := http.HandlerFunc(AddNewWinner)
 	handler.ServeHTTP(rr, req)
 	if status := rr.Code; status != http.StatusUnprocessableEntity {
+		fmt.Println(status)
 		t.Error("Did not properly validate winner payload")
 	}
 }
